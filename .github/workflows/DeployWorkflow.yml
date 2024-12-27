@@ -67,7 +67,7 @@ jobs:
          az logicapp deployment source config-zip \
               --resource-group ${{github.event.inputs.ResourceGroupName}} \
               --name ${{github.event.inputs.LogicAppName}} \
-              --src '${{ github.run_id }}.zip'
+              --src 'output/${{ github.run_id }}.zip'
        
 
 
