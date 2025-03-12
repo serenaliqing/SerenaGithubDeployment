@@ -2,16 +2,23 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
   "parameters": {
-
+    "logicAppname": {
+      "value": "githubdeployment0312"
+    },
     "appInsightName": {
-      "value": "SingleTenantLABasicshmv1"
+      "value": "githubdeployment0312"
     },
     "use32BitWorkerProcess": {
       "value": true
     },
     "hostingPlanName": {
-      "value": "SingleTenantLABasicshmv1"
+      "value": "githubdeployment0312"
     },
+
+    "StorageAccountName": {
+      "value": "githubdeployment0312"
+    },
+
     "sku": {
       "value": "WorkflowStandard"
     },
