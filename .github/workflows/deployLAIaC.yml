@@ -12,15 +12,6 @@ on:
       resourceGroupName:
         description: 'Resource group name'
         required: true
-      
-      StorageAccountName:
-        description: 'storage Account name'
-        required: true
-        
-      logicAppname:
-        description: 'LogicAppName'
-        required: true
- 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -36,26 +27,9 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Read Variables from YAML
-        run: |
-          echo "ENVIRONMENT=$(yq '.variables.logicAppname' variables.yml)" >> $GITHUB_ENV
-          echo "LOCATION=$(yq '.variables.StorageAccountName' variables.yml)" >> $GITHUB_ENV
-        shell: bash
-
-      - name: Merge YAML Variables into parameters.json
-        run: |
-          jq --arg environment "$logicAppname" \
-             --arg location "$StorageAccountName" \
-             '.parameters.logicAppname.value = $logicAppname |
-              .parameters.StorageAccountName.value = $StorageAccountName' ./ARMTemplates/LA_Standard_Basic_Param.json > merged-parameters.json
-        shell: bash
-
-          
       - uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{github.event.inputs.subscriptionId}}
           resourceGroupName: ${{github.event.inputs.resourceGroupName}}
           template: ./ARMTemplates/LA_Standard_Basic.json
-          parameters: "@merged-parameters.json"
-                     
+          parameters: ./ARMTemplates/LA_Standard_Basic_Param.json
