@@ -13,11 +13,11 @@ on:
         description: 'Resource group name'
         required: true
       
-      storageAccountName:
+      StorageAccountName:
         description: 'storage Account name'
         required: true
         
-      logicAppName:
+      logicAppname:
         description: 'LogicAppName'
         required: true
  
