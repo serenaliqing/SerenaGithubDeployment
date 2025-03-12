@@ -12,6 +12,15 @@ on:
       resourceGroupName:
         description: 'Resource group name'
         required: true
+      
+      storageAccountName:
+        description: 'storage Account name'
+        required: true
+        
+      logicAppName:
+        description: 'LogicAppName'
+        required: true
+ 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -32,4 +41,4 @@ jobs:
           subscriptionId: ${{github.event.inputs.subscriptionId}}
           resourceGroupName: ${{github.event.inputs.resourceGroupName}}
           template: ./ARMTemplates/LA_Standard_Basic.json
-          parameters: ./ARMTemplates/LA_Standard_Basic_Param.json
+          parameters: ./ARMTemplates/LA_Standard_Basic_Param.json  
